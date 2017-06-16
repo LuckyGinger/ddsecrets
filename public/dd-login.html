@@ -109,15 +109,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             console.log("response", response);
             console.log("response.user.uid", response.user.uid);
             console.log("response.uid", response.uid);
-            this.$.username.data = {'name':this.$.characterName.value,
-              'imageURL':response.user.photoURL};
+            var temp = {'name':this.$.characterName.value}
+            if (response.user.photoURL) {
+              temp['imageURL'] = response.user.photoURL
+            } else {   
+              temp['imageURL'] = "https://www.timeshighereducation.com/sites/default/files/byline_photos/default-avatar.png"
+            }
+            this.$.username.data = temp;
             this.$.username.saveValue('/users/', response.user.uid);
     
             this.fire('sign-in', null, { bubbles: false });
 
         }).catch(function(error) {
           console.log("error", error);
-        });
+        });      
       }
       // _setUserRef: function(newData, oldData) {
       //   if (typeof newData !== "undefined") {
