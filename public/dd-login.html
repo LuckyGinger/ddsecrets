@@ -95,18 +95,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         user: {
           type: String,
-          observer: '_setUserRef'
+          // observer: '_signIn'
+          // observer: '_setUserRef'
         }
       },
       signIn: function() {
 
         console.log(this.$.auth);
-
-    //           // this.$.auth.signInAnonymously();
-    //         // this.$.auth.signInWithPopup();
-    // //             .then(function(response) {// successful authentication response here})
-    // // .catch(function(error) {// unsuccessful authentication response here});
-
 
         // this.$.auth.signInWithEmailAndPassword("test@email.com", "things")
         this.$.auth.signInWithPopup()
@@ -114,25 +109,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             console.log("response", response);
             console.log("response.user.uid", response.user.uid);
             console.log("response.uid", response.uid);
-            this.$.username.data = {'name':this.$.characterName.value};
+            this.$.username.data = {'name':this.$.characterName.value,
+              'imageURL':response.user.photoURL};
             this.$.username.saveValue('/users/', response.user.uid);
-        }); // TODO: change this to signInWithPopup();
+    
+            this.fire('sign-in', null, { bubbles: false });
 
-        console.log(this.$.characterName.value)
-
-        console.log("this.path", this.path);
-        this.$.username.saveValue(this.path, this.$.characterName.value);
-
-        this.fire('sign-in', null, { bubbles: false });
-      },
-      _setUserRef: function(newData, oldData) {
-        if (newData.uid) {
-          console.log("this.user", this.user);
-          console.log("newData.uid", newData.uid);
-
-          this.user = '/users/' + newData.uid;
-        }
+        }).catch(function(error) {
+          console.log("error", error);
+        });
       }
+      // _setUserRef: function(newData, oldData) {
+      //   if (typeof newData !== "undefined") {
+      //     console.log("this.user", this.user);
+      //     console.log("newData", newData);
+
+      //     this.user = '/users/' + newData.uid;
+      //   }
+      // }
     });
   </script>
 </dom-module>

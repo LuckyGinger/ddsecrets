@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-    <title>Notes</title>
+    <title>D&Dr</title>
     <link rel="manifest" href="manifest.json">
     <!-- Older Chrome configuration -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -24,6 +24,7 @@
     <link rel="import" href="bower_components/platinum-sw/platinum-sw-elements.html">
     <link rel="import" href="bower_components/polymerfire/firebase-app.html">
     <link rel="import" href="ddsecrets-app.html">
+    <script src="sw-import.js"></script>
 
   </head>
   <body>
@@ -32,7 +33,7 @@
         skip-waiting
         clients-claim
         reload-on-install
-        href="sw-import.js">
+        href="./sw-import.js">
       <platinum-sw-cache
           default-cache-strategy="networkFirst">
       </platinum-sw-cache>
