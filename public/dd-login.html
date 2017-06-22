@@ -95,8 +95,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         user: {
           type: String,
+          observer: '_setUserRef'
           // observer: '_signIn'
-          // observer: '_setUserRef'
         }
       },
       signIn: function() {
@@ -122,16 +122,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         }).catch(function(error) {
           console.log("error", error);
-        });      
-      }
-      // _setUserRef: function(newData, oldData) {
-      //   if (typeof newData !== "undefined") {
-      //     console.log("this.user", this.user);
-      //     console.log("newData", newData);
+        });              
+      },
+      _setUserRef: function(newData, oldData) {
+        if (typeof newData !== "undefined") {
+          console.log("this.user", this.user);
+          console.log("newData", newData);
 
-      //     this.user = '/users/' + newData.uid;
-      //   }
-      // }
+          // this.user = '/users' + newData.uid;
+          this.user = newData.uid;
+        }
+      }
     });
   </script>
 </dom-module>

@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"ob",
+				"observer"
+			],
+			[
 				"sign",
 				"signInWithPopup"
 			],
@@ -48,17 +52,37 @@
 			"file": "public/ddsecrets-app.html",
 			"settings":
 			{
-				"buffer_size": 8496,
+				"buffer_size": 8575,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "public/my-view1.html",
+			"file": "public/dd-login.html",
 			"settings":
 			{
-				"buffer_size": 5406,
+				"buffer_size": 4477,
 				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "<!--\n@license\nCopyright (c) 2016 The Polymer Project Authors. All rights reserved.\nThis code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt\nThe complete set of authors may be found at http://polymer.github.io/AUTHORS.txt\nThe complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt\nCode distributed by Google as part of the polymer project is also\nsubject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt\n-->\n\n<link rel=\"import\" href=\"/bower_components/polymer/polymer-element.html\">\n<!-- <link rel=\"import\" href=\"/bower_components/note-app-elements/na-elements.html\"> -->\n<link rel=\"import\" href=\"/bower_components/polymerfire/firebase-query.html\">\n<link rel=\"import\" href=\"/bower_components/polymerfire/firebase-document.html\">\n<link rel=\"import\" href=\"/bower_components/iron-list/iron-list.html\" />\n<link rel=\"import\" href=\"/bower_components/iron-image/iron-image.html\" />\n\n\n\n<link rel=\"import\" href=\"shared-styles.html\">\n\n<dom-module id=\"my-view1\">\n  <template>\n    <style include=\"shared-styles\">\n      :host {\n        display: block;\n        width: 100%;\n        padding: 0px;\n      }\n\n      ul {\n        /*list-style-type: none;*/\n        padding: 0px;\n      }\n\n      h3 {\n        font: bold 20px/1.5 Helvetica, Verdana, sans-serif;\n      }\n\n      li iron-image {\n        float: left;\n        margin: 0 15px 0 0;\n      }\n\n/*      li p {\n        font: 200 12px/1.5 Georgia, Times New Roman, serif;\n      }\n*/\n      li {\n        padding: 10px;\n        overflow: auto;\n      }\n\n      li:hover {\n        background: var(--paper-deep-purple-900);\n        opacity: 20%;\n        cursor: pointer;\n      }\n\n    </style>\n\n    <firebase-auth\n        id=\"auth\"\n        app-name=\"ddsecrets\"\n        provider=\"google\"\n        signed-in=\"{{signedIn}}\"\n        user=\"{{user}}\">\n    </firebase-auth>\n\n<!--     <firebase-document\n      id=\"query\"\n      app-name=\"ddsecrets\"\n      path=\"/users\"\n      data=\"{{data}}\">\n    </firebase-document>\n -->\n    <firebase-query\n        id=\"query\"\n        app-name=\"ddsecrets\"\n        path=\"/users\"\n        data=\"{{fireData}}\">\n    </firebase-query>\n\n    <ul>\n      <template id=\"fd\" is=\"dom-repeat\" items=\"{{fireData}}\" as=\"item\">\n        <li on-click=\"dothing\">\n          <iron-image class=\"circle\" style=\"width:50px; height:50px;\" sizing=\"cover\" src$=\"[[item.imageURL]]\"></iron-image>\n          <h3>[[item.name]]</h3>        \n        </li>          \n      </template>\n    </ul>\n \n\n  </template>\n\n  <script>\n    // class MyView1 extends Polymer.Element {\n    //   static get is() { return 'my-view1'; }\n\n\n\n    // }\n\n    Polymer({\n  \n      is: 'my-view1',\n\n      behaviors: [Polymer.Element],\n\n      properties: {\n        uid: String,\n        url: String,\n        fireData: {\n          type: Object,\n          notify: true,\n          // observer: '_dataChanged(fireData.splices)'\n        }//,\n        // fireData1:{\n        //   type: Array,\n        //   notify: true\n        // },\n\n        // data: {\n        //   type: Object,\n        //   observer: 'dataChanged'\n        // },\n      },\n      observers: [\n        '_dataChanged(fireData.splices)'\n      ],\n      _toArray: function(obj) {\n          return Object.keys(obj).map(function(key) {\n              return {\n                  name: key,\n                  value: obj[key]\n              }\n          });\n      },\n      // ready: function(){\n      //   console.log(\"query\", this.$.query.data);\n      //   // thie.$.query.path = /users/ + this.$..\n      // }\n      _dataChanged: function(newData, oldData) {\n        if (newData) {\n          // for (let obj of newData.indexSplices) {\n          //   console.log(obj);\n          // }\n          console.log(newData)\n          newData.indexSplices.forEach(function(s) {\n            console.log(\"s.object\", s);\n\n            for (var i=0; i<s.addedCount; i++) {\n              var index = s.index + i;\n              var item = s.object[index];\n              console.log('Item ' + item.name + ' added at index ' + index);\n\n\n              // do whatever needed with the item here:\n              // this.fireData[index].name = \"Chub Chub\";\n              this.set(['fireData', index, 'name'], \"Chub Chub\");\n            }\n          }, this)\n      }\n\n\n\n\n\n        // console.log(Object.keys(newData));\n        // var x = Object.keys(newData)\n        // console.log(x[0]);\n        // console.log(newData);\n        // console.log([{'name':\"A\"}, {'name': \"B\"}][0].name);\n\n        // this.set('fireData1', newData);\n        // this.set('fireData1', [{'name':\"A\"}, {'name': \"B\"}]);\n      },\n      dothing: function() {\n        console.log(\"thing\")\n      }\n\n    });\n\n\n    // window.customElements.define(MyView1.is, MyView1);\n  </script>\n</dom-module>\n",
+			"file": "public/my-view1.html",
+			"file_size": 5384,
+			"file_write_time": 131425685183628193,
+			"settings":
+			{
+				"buffer_size": 4768,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/bower_components/polymerfire/firebase-query.html",
+			"settings":
+			{
+				"buffer_size": 12649,
 				"line_ending": "Unix"
 			}
 		},
@@ -126,15 +150,14 @@
 		"/D/Thom/Projects/nodeProjects/ddsecrets1",
 		"/D/Thom/Projects/nodeProjects/ddsecrets1/public",
 		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components",
-		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/byutv-jsonp",
-		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/firebase",
 		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/iron-image",
 		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/iron-list",
-		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/paper-behaviors",
 		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/polymerfire"
 	],
 	"file_history":
 	[
+		"/D/Thom/Projects/Test/hello.txt",
+		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/firebase/firebase-auth-externs.js",
 		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/iron-selector/iron-selectable.html",
 		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/iron-pages/iron-pages.html",
 		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/polymerfire/firebase-messaging.html",
@@ -192,6 +215,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"getRedirectResult",
 			"h1",
 			"circle",
 			"saveValue",
@@ -236,7 +260,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -252,8 +276,8 @@
 						"selection":
 						[
 							[
-								1568,
-								1606
+								1675,
+								1675
 							]
 						],
 						"settings":
@@ -265,10 +289,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 145.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -277,15 +301,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8496,
+						"buffer_size": 8575,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2948,
-								2778
+								6176,
+								6176
 							]
 						],
 						"settings":
@@ -297,27 +321,59 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 448.0,
+						"translation.y": 1753.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "public/dd-login.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4477,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4424,
+								4424
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1119.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "public/my-view1.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5406,
+						"buffer_size": 4768,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3421,
-								3421
+								3158,
+								3158
 							]
 						],
 						"settings":
@@ -329,14 +385,46 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1396.0,
+						"translation.y": 1499.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 4,
+					"file": "public/bower_components/polymerfire/firebase-query.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12649,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3253,
+								3253
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1568.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
 					"file": "public/bower_components/paper-styles/color.html",
 					"semi_transient": false,
 					"settings":
@@ -364,11 +452,11 @@
 						"translation.y": 908.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 6,
 					"file": "public/bower_components/iron-image/iron-image.html",
 					"semi_transient": false,
 					"settings":
@@ -396,11 +484,11 @@
 						"translation.y": 334.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 7,
 					"file": "public/bower_components/polymerfire/firebase-auth.html",
 					"semi_transient": false,
 					"settings":
@@ -412,8 +500,8 @@
 						"selection":
 						[
 							[
-								0,
-								0
+								6490,
+								6490
 							]
 						],
 						"settings":
@@ -425,10 +513,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2367.0,
+						"translation.y": 2307.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -509,7 +597,7 @@
 		[
 			[
 				"",
-				"D:\\Thom\\Projects\\nodeProjects\\ddsecrets\\ddsecrets.sublime-project"
+				"D:\\Thom\\Projects\\SublimeTextProjects\\Notes.sublime-project"
 			]
 		],
 		"width": 380.0

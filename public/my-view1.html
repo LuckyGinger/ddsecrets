@@ -82,14 +82,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </firebase-query>
 
     <ul>
-      <template is="dom-repeat" items="[[fireData]]" as="item">
+      <template id="fd" is="dom-repeat" items="{{fireData}}" as="item">
         <li on-click="dothing">
-          <iron-image class="circle" style="width:50px; height:50px;" sizing="cover" src="[[item.imageURL]]"></iron-image>
+          <iron-image class="circle" style="width:50px; height:50px;" sizing="cover" src$="[[item.imageURL]]"></iron-image>
           <h3>[[item.name]]</h3>        
         </li>          
       </template>
     </ul>
 
+    
+ 
 
   </template>
 
@@ -110,49 +112,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       properties: {
         uid: String,
         url: String,
-        // data: {
-        //   type: Object,
-        //   observer: 'dataChanged'
-        // },
-        fireData: Array
+        fireData: {
+          type: Object,
+          // notify: true
+        }
       },
+      observers: [
+        '_dataChanged(fireData.splices)'
+      ],
       _toArray: function(obj) {
           return Object.keys(obj).map(function(key) {
               return {
                   name: key,
                   value: obj[key]
-              };
+              }
           });
       },
-      // ready: function(){
-      //   console.log("query", this.$.query.data);
-      //   // thie.$.query.path = /users/ + this.$..
-      // }
-      dataChanged: function(newData, oldData) {
-        console.log("newData", newData);
-        console.log("oldData", oldData);          
-
-        
-        var players = []
+      _dataChanged: function(newData, oldData) {
         if (newData) {
-          for (var key in newData) {
-            var obj = newData[key];
-
-            var temp = {};
-            for (var prop in obj) {
-              temp[prop] = obj[prop]; 
-              console.log(obj[prop]);
+          // Removes the current user from the list even though we all
+          //  like talking to ourselves
+          newData.indexSplices.forEach(function(s) {
+            var temp = []
+            for (obj of s.object) {
+              if (obj.$key == this.user.uid) {
+              } else {
+                temp.push(obj);
+              }
             }
-            players.push(temp);
-          }
-          // console.log("playername", players[0].name);
-          this.fireData = players;
-          // this.set('fireData', players)
-          // console.log("url", this.$.app);
-          // this.$.ajax.url 
-          // this.set('fireData', newData.D6kTdmHm7cgkX0uWxPoJoEJWtyi1);
-          // console.log('fireData', this.$.fireData);
-          // console.log(newData.D6kTdmHm7cgkX0uWxPoJoEJWtyi1);
+            this.fireData = temp
+          }, this);
         }
       },
       dothing: function() {
@@ -162,6 +151,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     });
 
 
-    // window.customElements.define(MyView1.is, MyView1);
   </script>
 </dom-module>
