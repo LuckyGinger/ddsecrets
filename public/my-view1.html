@@ -54,6 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       li:hover {
         background: var(--paper-deep-purple-900);
+        color: var(--google-grey-500);
         opacity: 20%;
         cursor: pointer;
       }
@@ -112,7 +113,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       behaviors: [Polymer.Element],
 
       properties: {
-        uid: String,
+        // uid: String,
         url: String,
         isHidden: {
           type: Boolean,
@@ -143,11 +144,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             for (obj of s.object) {
               if (obj.$key == this.user.uid) {
                 // Don't push on the current user
+                console.log("this user", this.user)
               } else {
                 temp.push(obj);
               }
             }
-            this.fireData = temp
+            this.fireData = temp;
           }, this);
         }
       },

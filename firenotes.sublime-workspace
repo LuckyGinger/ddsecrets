@@ -4,8 +4,12 @@
 		"selected_items":
 		[
 			[
+				"index",
+				"indexSplices"
+			],
+			[
 				"ob",
-				"observer"
+				"object"
 			],
 			[
 				"sign",
@@ -52,9 +56,34 @@
 			"file": "public/ddsecrets-app.html",
 			"settings":
 			{
-				"buffer_size": 8575,
+				"buffer_size": 10385,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "public/bower_components/accessibility-developer-tools/dist/js/axs_testing.js",
+			"settings":
+			{
+				"buffer_size": 111483,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/my-view2.html",
+			"settings":
+			{
+				"buffer_size": 1965,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "public/bower_components/app-route/app-route-converter.html",
+			"settings":
+			{
+				"buffer_size": 2976,
+				"line_ending": "Unix"
 			}
 		},
 		{
@@ -67,14 +96,22 @@
 			}
 		},
 		{
-			"contents": "<!--\n@license\nCopyright (c) 2016 The Polymer Project Authors. All rights reserved.\nThis code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt\nThe complete set of authors may be found at http://polymer.github.io/AUTHORS.txt\nThe complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt\nCode distributed by Google as part of the polymer project is also\nsubject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt\n-->\n\n<link rel=\"import\" href=\"/bower_components/polymer/polymer-element.html\">\n<!-- <link rel=\"import\" href=\"/bower_components/note-app-elements/na-elements.html\"> -->\n<link rel=\"import\" href=\"/bower_components/polymerfire/firebase-query.html\">\n<link rel=\"import\" href=\"/bower_components/polymerfire/firebase-document.html\">\n<link rel=\"import\" href=\"/bower_components/iron-list/iron-list.html\" />\n<link rel=\"import\" href=\"/bower_components/iron-image/iron-image.html\" />\n\n\n\n<link rel=\"import\" href=\"shared-styles.html\">\n\n<dom-module id=\"my-view1\">\n  <template>\n    <style include=\"shared-styles\">\n      :host {\n        display: block;\n        width: 100%;\n        padding: 0px;\n      }\n\n      ul {\n        /*list-style-type: none;*/\n        padding: 0px;\n      }\n\n      h3 {\n        font: bold 20px/1.5 Helvetica, Verdana, sans-serif;\n      }\n\n      li iron-image {\n        float: left;\n        margin: 0 15px 0 0;\n      }\n\n/*      li p {\n        font: 200 12px/1.5 Georgia, Times New Roman, serif;\n      }\n*/\n      li {\n        padding: 10px;\n        overflow: auto;\n      }\n\n      li:hover {\n        background: var(--paper-deep-purple-900);\n        opacity: 20%;\n        cursor: pointer;\n      }\n\n    </style>\n\n    <firebase-auth\n        id=\"auth\"\n        app-name=\"ddsecrets\"\n        provider=\"google\"\n        signed-in=\"{{signedIn}}\"\n        user=\"{{user}}\">\n    </firebase-auth>\n\n<!--     <firebase-document\n      id=\"query\"\n      app-name=\"ddsecrets\"\n      path=\"/users\"\n      data=\"{{data}}\">\n    </firebase-document>\n -->\n    <firebase-query\n        id=\"query\"\n        app-name=\"ddsecrets\"\n        path=\"/users\"\n        data=\"{{fireData}}\">\n    </firebase-query>\n\n    <ul>\n      <template id=\"fd\" is=\"dom-repeat\" items=\"{{fireData}}\" as=\"item\">\n        <li on-click=\"dothing\">\n          <iron-image class=\"circle\" style=\"width:50px; height:50px;\" sizing=\"cover\" src$=\"[[item.imageURL]]\"></iron-image>\n          <h3>[[item.name]]</h3>        \n        </li>          \n      </template>\n    </ul>\n \n\n  </template>\n\n  <script>\n    // class MyView1 extends Polymer.Element {\n    //   static get is() { return 'my-view1'; }\n\n\n\n    // }\n\n    Polymer({\n  \n      is: 'my-view1',\n\n      behaviors: [Polymer.Element],\n\n      properties: {\n        uid: String,\n        url: String,\n        fireData: {\n          type: Object,\n          notify: true,\n          // observer: '_dataChanged(fireData.splices)'\n        }//,\n        // fireData1:{\n        //   type: Array,\n        //   notify: true\n        // },\n\n        // data: {\n        //   type: Object,\n        //   observer: 'dataChanged'\n        // },\n      },\n      observers: [\n        '_dataChanged(fireData.splices)'\n      ],\n      _toArray: function(obj) {\n          return Object.keys(obj).map(function(key) {\n              return {\n                  name: key,\n                  value: obj[key]\n              }\n          });\n      },\n      // ready: function(){\n      //   console.log(\"query\", this.$.query.data);\n      //   // thie.$.query.path = /users/ + this.$..\n      // }\n      _dataChanged: function(newData, oldData) {\n        if (newData) {\n          // for (let obj of newData.indexSplices) {\n          //   console.log(obj);\n          // }\n          console.log(newData)\n          newData.indexSplices.forEach(function(s) {\n            console.log(\"s.object\", s);\n\n            for (var i=0; i<s.addedCount; i++) {\n              var index = s.index + i;\n              var item = s.object[index];\n              console.log('Item ' + item.name + ' added at index ' + index);\n\n\n              // do whatever needed with the item here:\n              // this.fireData[index].name = \"Chub Chub\";\n              this.set(['fireData', index, 'name'], \"Chub Chub\");\n            }\n          }, this)\n      }\n\n\n\n\n\n        // console.log(Object.keys(newData));\n        // var x = Object.keys(newData)\n        // console.log(x[0]);\n        // console.log(newData);\n        // console.log([{'name':\"A\"}, {'name': \"B\"}][0].name);\n\n        // this.set('fireData1', newData);\n        // this.set('fireData1', [{'name':\"A\"}, {'name': \"B\"}]);\n      },\n      dothing: function() {\n        console.log(\"thing\")\n      }\n\n    });\n\n\n    // window.customElements.define(MyView1.is, MyView1);\n  </script>\n</dom-module>\n",
+			"contents": "<!--\n@license\nCopyright (c) 2016 The Polymer Project Authors. All rights reserved.\nThis code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt\nThe complete set of authors may be found at http://polymer.github.io/AUTHORS.txt\nThe complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt\nCode distributed by Google as part of the polymer project is also\nsubject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt\n-->\n\n<link rel=\"import\" href=\"/bower_components/polymer/polymer-element.html\">\n<!-- <link rel=\"import\" href=\"/bower_components/note-app-elements/na-elements.html\"> -->\n<link rel=\"import\" href=\"/bower_components/polymerfire/firebase-query.html\">\n<link rel=\"import\" href=\"/bower_components/polymerfire/firebase-document.html\">\n<link rel=\"import\" href=\"/bower_components/iron-list/iron-list.html\" />\n<link rel=\"import\" href=\"/bower_components/iron-image/iron-image.html\" />\n<link rel=\"import\" href=\"/bower_components/paper-button/paper-button.html\" />\n\n\n\n<link rel=\"import\" href=\"shared-styles.html\">\n\n<dom-module id=\"my-view1\">\n  <template>\n    <style include=\"shared-styles\">\n      :host {\n        display: block;\n        width: 100%;\n        padding: 0px;\n      }\n\n      ul {\n        /*list-style-type: none;*/\n        padding: 0px;\n      }\n\n      h3 {\n        font: bold 20px/1.5 Helvetica, Verdana, sans-serif;\n      }\n\n      li iron-image {\n        float: left;\n        margin: 0 15px 0 0;\n      }\n\n/*      li p {\n        font: 200 12px/1.5 Georgia, Times New Roman, serif;\n      }\n*/\n      li {\n        padding: 10px;\n        overflow: auto;\n      }\n\n      li:hover {\n        background: var(--paper-deep-purple-900);\n        color: ;\n        opacity: 20%;\n        cursor: pointer;\n      }\n\n    </style>\n\n    <firebase-auth\n        id=\"auth\"\n        app-name=\"ddsecrets\"\n        provider=\"google\"\n        signed-in=\"{{signedIn}}\"\n        user=\"{{user}}\">\n    </firebase-auth>\n\n<!--     <firebase-document\n      id=\"query\"\n      app-name=\"ddsecrets\"\n      path=\"/users\"\n      data=\"{{data}}\">\n    </firebase-document>\n -->\n    <firebase-query\n        id=\"query\"\n        app-name=\"ddsecrets\"\n        path=\"/users\"\n        data=\"{{fireData}}\">\n    </firebase-query>\n\n    <ul>\n      <template id=\"fd\" is=\"dom-repeat\" items=\"[[fireData]]\" as=\"item\">\n        <li on-click=\"showButton\">\n          <iron-image class=\"circle\" style=\"width:50px; height:50px;\" sizing=\"cover\" src$=\"[[item.imageURL]]\"></iron-image>\n          <h3>[[item.name]]</h3>        \n        </li>          \n      </template>\n    </ul>\n\n\n    <paper-button id=\"createMessageButton\" on-tap=\"dothing\" raised hidden=[[isHidden]]>Create Message</paper-button>\n \n\n  </template>\n\n  <script>\n    // class MyView1 extends Polymer.Element {\n    //   static get is() { return 'my-view1'; }\n\n\n\n    // }\n\n    Polymer({\n  \n      is: 'my-view1',\n\n      behaviors: [Polymer.Element],\n\n      properties: {\n        uid: String,\n        url: String,\n        isHidden: {\n          type: Boolean,\n          value: true\n        },\n        fireData: {\n          type: Object,\n          // notify: true\n        }\n      },\n      observers: [\n        '_dataChanged(fireData.splices)'\n      ],\n      _toArray: function(obj) {\n          return Object.keys(obj).map(function(key) {\n              return {\n                  name: key,\n                  value: obj[key]\n              }\n          });\n      },\n      _dataChanged: function(newData, oldData) {\n        if (newData) {\n          // Removes the current user from the list even though we all\n          //  like talking to ourselves\n          newData.indexSplices.forEach(function(s) {\n            var temp = []\n            for (obj of s.object) {\n              if (obj.$key == this.user.uid) {\n                // Don't push on the current user\n              } else {\n                temp.push(obj);\n              }\n            }\n            this.fireData = temp\n          }, this);\n        }\n      },\n      dothing: function() {\n        this.isHidden = true;\n        this.set('route.path', '/view2');\n      },\n      showButton: function() {\n        this.isHidden = false;\n\n        console.log(\"thing\");\n      }\n\n    });\n\n\n  </script>\n</dom-module>\n",
 			"file": "public/my-view1.html",
-			"file_size": 5384,
-			"file_write_time": 131425685183628193,
+			"file_size": 4234,
+			"file_write_time": 131426310723566634,
 			"settings":
 			{
-				"buffer_size": 4768,
+				"buffer_size": 4251,
 				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/bower_components/app-route/app-location.html",
+			"settings":
+			{
+				"buffer_size": 6575,
 				"line_ending": "Unix"
 			}
 		},
@@ -91,14 +128,6 @@
 			"settings":
 			{
 				"buffer_size": 10953,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "public/bower_components/iron-image/iron-image.html",
-			"settings":
-			{
-				"buffer_size": 12602,
 				"line_ending": "Unix"
 			}
 		},
@@ -150,12 +179,14 @@
 		"/D/Thom/Projects/nodeProjects/ddsecrets1",
 		"/D/Thom/Projects/nodeProjects/ddsecrets1/public",
 		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components",
-		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/iron-image",
-		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/iron-list",
+		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/app-route",
+		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/iron-pages",
+		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/paper-button",
 		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/polymerfire"
 	],
 	"file_history":
 	[
+		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/iron-image/iron-image.html",
 		"/D/Thom/Projects/Test/hello.txt",
 		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/firebase/firebase-auth-externs.js",
 		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/iron-selector/iron-selectable.html",
@@ -289,10 +320,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 145.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -301,15 +332,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8575,
+						"buffer_size": 10385,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6176,
-								6176
+								7462,
+								7462
 							]
 						],
 						"settings":
@@ -321,7 +352,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1753.0,
+						"translation.y": 1050.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
@@ -329,6 +360,102 @@
 				},
 				{
 					"buffer": 2,
+					"file": "public/bower_components/accessibility-developer-tools/dist/js/axs_testing.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 111483,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								18468,
+								18468
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1860.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "public/my-view2.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1965,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1376,
+								1376
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 126.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "public/bower_components/app-route/app-route-converter.html",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 2976,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1986,
+								2051
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 126.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
 					"file": "public/dd-login.html",
 					"semi_transient": false,
 					"settings":
@@ -340,8 +467,8 @@
 						"selection":
 						[
 							[
-								4424,
-								4424
+								3931,
+								3939
 							]
 						],
 						"settings":
@@ -353,27 +480,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1119.0,
+						"translation.y": 681.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 6,
 					"file": "public/my-view1.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4768,
+						"buffer_size": 4251,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3158,
-								3158
+								1746,
+								1746
 							]
 						],
 						"settings":
@@ -385,14 +512,46 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1499.0,
+						"translation.y": 154.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 7,
+					"file": "public/bower_components/app-route/app-location.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6575,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1386,
+								1386
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 49.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
 					"file": "public/bower_components/polymerfire/firebase-query.html",
 					"semi_transient": false,
 					"settings":
@@ -404,8 +563,8 @@
 						"selection":
 						[
 							[
-								3253,
-								3253
+								2002,
+								2016
 							]
 						],
 						"settings":
@@ -417,14 +576,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1568.0,
+						"translation.y": 728.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 9,
 					"file": "public/bower_components/paper-styles/color.html",
 					"semi_transient": false,
 					"settings":
@@ -436,8 +595,8 @@
 						"selection":
 						[
 							[
-								3246,
-								3223
+								2294,
+								2294
 							]
 						],
 						"settings":
@@ -449,46 +608,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 908.0,
+						"translation.y": 588.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "public/bower_components/iron-image/iron-image.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 12602,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1755,
-								1634
-							]
-						],
-						"settings":
-						{
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 334.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
+					"buffer": 10,
 					"file": "public/bower_components/polymerfire/firebase-auth.html",
 					"semi_transient": false,
 					"settings":
@@ -516,7 +643,7 @@
 						"translation.y": 2307.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 10,
 					"type": "text"
 				}
 			]
@@ -570,6 +697,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"app-",
+				"public\\bower_components\\app-route\\app-location.html"
+			],
 			[
 				"color",
 				"public\\bower_components\\paper-styles\\color.html"

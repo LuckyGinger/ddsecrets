@@ -9,7 +9,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-route/app-route-converter.html">
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<!-- <base href="https://polygit.org/polymer+1.7.0/components/"> -->
+<!-- <script src="webcomponentsjs/webcomponents-lite.min.js"></script> -->
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-view2">
@@ -20,16 +25,61 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         padding: 10px;
       }
+
+      ul {
+        /*list-style-type: none;*/
+        padding: 0px;
+      }
+
+      h3 {
+        font: 20px/1.5 sans-serif;
+      }
+
+      li iron-image {
+        float: right;
+        margin: 0 15px 0 0;
+      }
+/*      li p {
+        font: 200 12px/1.5 Georgia, Times New Roman, serif;
+      }
+*/
+      li {
+        padding: 10px;
+        overflow: auto;
+      }
     </style>
 
+    <firebase-auth
+        id="auth"
+        app-name="ddsecrets"
+        provider="google"
+        signed-in="{{signedIn}}"
+        user="{{user}}">
+    </firebase-auth>
+    
     <firebase-query
-      id="query"
+      id="messages"
       app-name="ddsecrets"
-      path="/users"
-      data="{{fireData}}">
+      path="/messages/[[secret]]"
+      order-by-child="when"
+      data="{{fireMsg}}">
     </firebase-query>
 
-    
+    <div id="list">
+      <ul>
+        <h3>[[noContent]]</h3>
+        <template id="convo" is="dom-repeat" items="[[fireMsg]]" as="item">
+          <li>
+            <iron-image class="circle" style="width:50px; height:50px;" sizing="cover" scroll="[[_scroll(item.count)]]" src$="[[item.imageURL]]"></iron-image>
+            <!-- <iron-image class="circle" style="width:50px; height:50px;" sizing="cover" scroll="[[_scroll" src$="[[item.imageURL]]"></iron-image> -->
+            <h3>[[item.what]]</h3> 
+            <hr>       
+          </li>          
+        </template>
+      </ul>
+      <paper-input id="message" label="Write a secret..."></paper-input>
+      <paper-button id="send" on-tap="send">Send</paper-button>
+    </div>
 
 
   </template>
@@ -41,9 +91,65 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       behaviors: [Polymer.Element],
 
+      properties: {
+        secret: String,
+        noContent: {
+          type: String,
+          value: ""
+        }
+        // notify: true
+      },
+
       ready: function() {
-        console.log("the secret", this.secret);
+
+      },
+      _secrets: function() {
+        console.log("Secrets");
+      },
+      observers: [
+        '_dataChanged(fireMsg.splices)',
+        '_scroll(counter)'
+      ],
+      _scroll: function(counter) {
+        console.log("scroll");
+        this.fire('eventFromChild', {height: this.$.list});
+      },
+      _dataChanged(newData, oldData) {
+        if (newData) {
+          console.log("current", newData.currentTarget);
+          newData.indexSplices.forEach(function(s) {
+            console.log(s);
+            var temp = []
+            for (obj of s.object) {
+              console.log("this user2", this.user)
+              if (obj["who"] == this.user.uid) {
+
+                obj["player"] = "curr";
+              } else {
+                obj["player"] = "them";
+              }
+              temp.push(obj);
+            }
+            this.fireMsg = temp;
+          }, this);
+          this.noContent = ""
+        } else {
+          this.noContent = "You haven't any secrets..."
+        }
+      },
+      send: function() {
+        var seconds = new Date().getTime() / 1000;
+        this.$.messages.ref.push({
+            imageURL: this.user.photoURL,
+            what: this.$.message.value,
+            who: this.user.uid,
+            when: seconds.toString()
+
+        });
+        this.$.message.value = null;
+        console.log(this.$.list);
       }
+
 
     });
     // class MyView2 extends Polymer.Element {
