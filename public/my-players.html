@@ -1,0 +1,125 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-route/app-route-converter.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<!-- <base href="https://polygit.org/polymer+1.7.0/components/"> -->
+<!-- <script src="webcomponentsjs/webcomponents-lite.min.js"></script> -->
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-players">
+  <template>
+    <style include="shared-styles">
+/*      :host {
+        display: block;
+
+        padding: 10px;
+      }*/
+
+      h3 {
+        font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+      }
+
+      li iron-image {
+        float: left;
+        margin: 0 15px 0 0;
+      }
+
+/*      li p {
+        font: 200 12px/1.5 Georgia, Times New Roman, serif;
+        font: 200 12px/1.5 Georgia, Times New Roman, serif;
+      }
+*/
+
+      li {
+        margin-bottom: 10px;
+        padding: 10px;
+        overflow: auto;
+        border-style: solid;
+        border-width: 1px;
+        background: var(--paper-deep-purple-100);
+        border-color: var(--paper-deep-purple-900);
+        box-shadow: 3px 3px 1px #888888;
+        letter-spacing: 1px;
+        
+      }
+
+      li.clicked {
+        border-width: 1px;
+        border-color: var(--paper-deep-purple-100);
+        background: var(--paper-deep-purple-900);
+        letter-spacing: 1px;
+        color: #FFF;
+        /*color: var(--paper-deep-purple-100);*/
+        opacity: 20%;
+        cursor: pointer;
+      }
+
+      li paper-icon-button {
+        float: right;
+        /*margin: auto 0 auto 0;*/
+
+      }
+
+    </style>
+
+    <li id="playerB" on-click="selectPlayer" class="playerButton">
+      <paper-icon-button class="add-circle-outline" icon=[[icon]]></paper-icon-button>
+      <iron-image class="circle" fade preload style="width:50px; height:50px;" sizing="cover" src$="[[image]]"></iron-image>
+      <p><b>[[name]]</b></p>
+    </li>  
+
+  </template>
+
+  <script>
+    Polymer({
+  
+      is: 'my-players',
+
+      behaviors: [Polymer.Element],
+
+      properties: {
+        name: String,
+        icon: {
+          type: String,
+          value: 'add'
+        },
+        image: String,
+        key: String,
+        notify: true
+      },
+
+      ready: function() {
+        this.set('icon', 'add');
+      },
+      selectPlayer: function() {
+        // Set the check mark
+        if (this.icon == 'add') {
+          this.set('icon', 'done');
+          this.$.playerB.classList.add('clicked');
+        } else {
+          this.$.playerB.classList.remove('clicked');
+          this.set('icon', 'add');
+        }
+        this.fire('playerSelected', {'key': this.key});
+      }
+
+
+    });
+    // class MyView2 extends Polymer.Element {
+    //   static get is() { return 'my-view2'; }
+    // }
+
+    // window.customElements.define(MyView2.is, MyView2);
+  </script>
+</dom-module>

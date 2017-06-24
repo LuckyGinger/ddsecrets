@@ -15,6 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="/bower_components/iron-list/iron-list.html" />
 <link rel="import" href="/bower_components/iron-image/iron-image.html" />
 <link rel="import" href="/bower_components/paper-button/paper-button.html" />
+<link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
 
 
 
@@ -34,31 +35,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 0px;
       }
 
-      h3 {
-        font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
-      }
-
-      li iron-image {
-        float: left;
-        margin: 0 15px 0 0;
-      }
-
-/*      li p {
-        font: 200 12px/1.5 Georgia, Times New Roman, serif;
-      }
-*/
-      li {
-        padding: 10px;
-        overflow: auto;
-      }
-
-      li:hover {
-        background: var(--paper-deep-purple-900);
-        color: var(--google-grey-500);
-        opacity: 20%;
-        cursor: pointer;
-      }
-
     </style>
 
     <firebase-auth
@@ -69,13 +45,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         user="{{user}}">
     </firebase-auth>
 
-<!--     <firebase-document
-      id="query"
-      app-name="ddsecrets"
-      path="/users"
-      data="{{data}}">
-    </firebase-document>
- -->
     <firebase-query
         id="query"
         app-name="ddsecrets"
@@ -83,28 +52,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         data="{{fireData}}">
     </firebase-query>
 
-    <ul>
-      <template id="fd" is="dom-repeat" items="[[fireData]]" as="item">
-        <li on-click="showButton">
-          <iron-image class="circle" style="width:50px; height:50px;" sizing="cover" src$="[[item.imageURL]]"></iron-image>
-          <h3>[[item.name]]</h3>        
-        </li>          
-      </template>
-    </ul>
+    <firebase-document
+      id="huddle"
+      app-name="ddsecrets"
+      path="/huddles"
+      data="{{data}}">
+    </firebase-document>
 
 
-    <paper-button id="createMessageButton" on-tap="dothing" raised hidden=[[isHidden]]>Create Message</paper-button>
+    <div id="usersList">
+      <ul>
+        <template id="fd" is="dom-repeat" items="[[fireData]]" as="item">      
+          <my-players name="[[item.name]]" image="[[item.imageURL]]" key="[[item.$key]]"></my-players>
+        </template>
+      </ul>
+    </div>
+
+    <paper-button id="createMessageButton" on-tap="createMessages" raised hidden=[[isHidden]]>Create Message</paper-button>
  
 
   </template>
 
   <script>
-    // class MyView1 extends Polymer.Element {
-    //   static get is() { return 'my-view1'; }
-
-
-
-    // }
 
     Polymer({
   
@@ -122,18 +91,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         fireData: {
           type: Object,
           // notify: true
-        }
+        },
+        playerArray: {
+          type: Array,
+          value: function() {
+            return [];
+          }
+        },
+        theIcon: {
+          type: String,
+          value: 'add'
+        },
+        userKey: String,
+        secret: {
+          type: String,
+          value: ''
+        }, 
+
       },
       observers: [
-        '_dataChanged(fireData.splices)'
+        '_dataChanged(fireData.splices)',
+        'createHuddle(userKey)'
       ],
-      _toArray: function(obj) {
-          return Object.keys(obj).map(function(key) {
-              return {
-                  name: key,
-                  value: obj[key]
-              }
-          });
+      ready: function() {
+        this.addEventListener('playerSelected', this.createHuddle);
       },
       _dataChanged: function(newData, oldData) {
         if (newData) {
@@ -146,6 +127,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 // Don't push on the current user
                 console.log("this user", this.user)
               } else {
+                obj['icon'] = 'add';
                 temp.push(obj);
               }
             }
@@ -153,15 +135,71 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           }, this);
         }
       },
-      dothing: function() {
-        this.isHidden = true;
-        this.set('route.path', '/view2');
-      },
-      showButton: function() {
-        this.isHidden = false;
+      createMessages: function() {
+        this.set('isHidden', true);
 
-        console.log("thing");
+        var obj = {};
+        // TODO: make this look better
+        var i = 0;
+        obj['who' + i] = this.user.uid;
+        for (; i < this.playerArray.length; i++) {
+          obj["who" + (i+1)] = this.playerArray[i];
+        }
+        obj["numUsers"] = i;
+
+        var newRef = this.$.huddle.ref.push(obj);
+        // console.log("data", this.$.huddle.data.newRef)
+        console.log("newRef.name", newRef);
+        console.log("newRef.name", newRef.path.o[1]);
+        this.set('secret', newRef.path.o[1])
+
+        this.fire('passSecret', {secret: newRef.path.o[1]});
+        // this.set('route.path', '/view2');
+      },
+      createHuddle: function(e) {
+        console.log("createHuddle", e.detail["key"]);
+        var key = e.detail["key"];
+
+        var i = this.playerArray.indexOf(key);
+        if (i == -1) {
+          this.push('playerArray', key);
+        } else {
+          this.playerArray.splice(i, 1);
+        }
+
+        if (this.playerArray.length > 0) {
+          this.set('isHidden', false);
+        } else {
+          this.set('isHidden', true);
+        }
+        console.log("playerArray", this.playerArray);
       }
+      // selectPlayer: function(e) {
+      //   this.async(function() {
+
+      //     var el = Polymer.dom(this.root).querySelector("#usersList .playerButton");
+      //     console.log("el", el);
+
+      //     var item = this.$.fd.itemForElement(e.target);
+      //     console.log(item)
+
+      //     item["icon"] = 'done';
+
+      //     console.log(this.playerArray)
+      //     if (0 < this.playerArray.length) {
+      //       this.push('playerArray', "stuff");
+      //       console.log(this.playerArray);          
+      //     } else {
+      //       this.push('playerArray', item);
+      //     }
+
+      //     this.isHidden = false;
+
+      //     console.log("thing");
+          
+      //   })
+      // }
+
 
     });
 

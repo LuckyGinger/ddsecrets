@@ -32,7 +32,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       h3 {
-        font: 20px/1.5 sans-serif;
+        font: 20px/1.5 Helvetica, sans-serif;
       }
 
       li iron-image {
@@ -44,8 +44,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 */
       li {
+        margin-bottom: 10px;
         padding: 10px;
         overflow: auto;
+        border-style: solid;
+        border-width: 1px;
+        background: var(--paper-deep-purple-100);
+        border-color: var(--paper-deep-purple-900);
+        box-shadow: 3px 3px 1px #888888
+        
       }
     </style>
 
@@ -70,10 +77,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <h3>[[noContent]]</h3>
         <template id="convo" is="dom-repeat" items="[[fireMsg]]" as="item">
           <li>
-            <iron-image class="circle" style="width:50px; height:50px;" sizing="cover" scroll="[[_scroll(item.count)]]" src$="[[item.imageURL]]"></iron-image>
+            <iron-image class="circle" fade preload style="width:50px; height:50px;" sizing="cover" scroll="[[_scroll(item.count)]]" src$="[[item.imageURL]]"></iron-image>
             <!-- <iron-image class="circle" style="width:50px; height:50px;" sizing="cover" scroll="[[_scroll" src$="[[item.imageURL]]"></iron-image> -->
-            <h3>[[item.what]]</h3> 
-            <hr>       
+            <p><b>[[item.what]]</b></p> 
           </li>          
         </template>
       </ul>
@@ -139,6 +145,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
       send: function() {
         var seconds = new Date().getTime() / 1000;
+        console.log("imageURL",this.user.photoURL);
+        console.log("what", this.$.message.value);
+        console.log("who",this.user.uid);
+        console.log("when",seconds.toString());
+        console.log("where", this.secret)
+
         this.$.messages.ref.push({
             imageURL: this.user.photoURL,
             what: this.$.message.value,

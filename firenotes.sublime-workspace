@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"border-bottom",
+				"border-bottom-width"
+			],
+			[
+				"border-top",
+				"border-top-color"
+			],
+			[
+				"he",
+				"height"
+			],
+			[
+				"scrol",
+				"scrollHeight"
+			],
+			[
 				"index",
 				"indexSplices"
 			],
@@ -56,16 +72,41 @@
 			"file": "public/ddsecrets-app.html",
 			"settings":
 			{
-				"buffer_size": 10385,
+				"buffer_size": 11146,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "public/bower_components/accessibility-developer-tools/dist/js/axs_testing.js",
+			"file": "public/bower_components/iron-iconset-svg/iron-iconset-svg.html",
 			"settings":
 			{
-				"buffer_size": 111483,
+				"buffer_size": 8234,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/bower_components/iron-icons/iron-icons.html",
+			"settings":
+			{
+				"buffer_size": 73711,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/my-icons.html",
+			"settings":
+			{
+				"buffer_size": 1186,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/my-view1.html",
+			"settings":
+			{
+				"buffer_size": 5894,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -73,53 +114,42 @@
 			"file": "public/my-view2.html",
 			"settings":
 			{
-				"buffer_size": 1965,
+				"buffer_size": 4786,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "public/bower_components/app-route/app-route-converter.html",
+			"contents": "Searching 2641 files for \"type: Array\"\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\app-layout\\app-grid\\demo\\flickr-grid-layout.html:\n  172  \n  173              photos: {\n  174:               type: Array,\n  175                value: function() {\n  176                  return [];\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\app-layout\\patterns\\transform-navigation\\x-app.html:\n  113  \n  114          items: {\n  115:           type: Array,\n  116            value: function() {\n  117              return ['Item One', 'Item Two', 'Item Three', 'Item Four', 'Item Five'];\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\app-layout\\templates\\shrine\\src\\shrine-app.html:\n  294  \n  295        sections: {\n  296:         type: Array,\n  297          value: function() {\n  298            return [\n  ...\n  314  \n  315        items: {\n  316:         type: Array\n  317        },\n  318  \n  319        featuredItems: {\n  320:         type: Array\n  321        },\n  322  \n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\app-layout\\templates\\shrine\\src\\shrine-detail.html:\n  281  \n  282        relatedItems: {\n  283:         type: Array\n  284        }\n  285  \n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\app-layout\\templates\\shrine\\src\\shrine-list.html:\n  105  \n  106        items: {\n  107:         type: Array\n  108        },\n  109  \n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\app-route\\demo\\index.html:\n  141  \n  142            videos: {\n  143:             type: Array,\n  144              value: function() {\n  145                return [];\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\app-route\\demo\\youtube-demo\\search-results.html:\n   56        properties: {\n   57          items: {\n   58:           type: Array\n   59          }\n   60        }\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\byutv-jsonp\\scripts\\byutv-behaviors-jsonp.js:\n   62  \t\t */\n   63  \t\tactiveRequests: {\n   64: \t\t\ttype: Array,\n   65  \t\t\tnotify: true,\n   66  \t\t\treadOnly: true,\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\iron-a11y-keys-behavior\\iron-a11y-keys-behavior.html:\n  294  \n  295          _boundKeyHandlers: {\n  296:           type: Array,\n  297            value: function() {\n  298              return [];\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\iron-a11y-keys-behavior\\demo\\x-key-aware.html:\n   64  \n   65        boundKeys: {\n   66:         type: Array,\n   67          value: function() {\n   68            return Object.keys(this.keyBindings).join(' ').split(' ');\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\iron-ajax\\iron-ajax.html:\n  279         */\n  280        activeRequests: {\n  281:         type: Array,\n  282          notify: true,\n  283          readOnly: true,\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\iron-list\\iron-list.html:\n  307         */\n  308        items: {\n  309:         type: Array\n  310        },\n  311  \n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\iron-list\\demo\\collapse.html:\n  180  \n  181            items: {\n  182:             type: Array,\n  183              value: function() {\n  184                return [];\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\iron-list\\demo\\grid.html:\n  226  \n  227            photos: {\n  228:             type: Array,\n  229              value: function() {\n  230                return [];\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\iron-list\\demo\\grouping.html:\n  177  \n  178            items: {\n  179:             type: Array,\n  180              value: function() {\n  181                return [];\n  ...\n  184  \n  185            states: {\n  186:             type: Array,\n  187              value: function() {\n  188                return [];\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\iron-list\\test\\fixtures\\x-grid.html:\n   45      properties: {\n   46        data: {\n   47:         type: Array\n   48        },\n   49  \n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\iron-list\\test\\fixtures\\x-list-with-bindings.html:\n   54      properties: {\n   55        data: {\n   56:         type: Array\n   57        },\n   58        propertyForReassignmentForwarding: {\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\iron-list\\test\\fixtures\\x-list.html:\n   55      properties: {\n   56        data: {\n   57:         type: Array\n   58        },\n   59  \n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\iron-list\\test\\smoke\\index.html:\n  170          properties: {\n  171            data: {\n  172:             type: Array,\n  173              value: window.dummyData\n  174            },\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\iron-list\\test\\smoke\\scroll-position-adjustment.html:\n   85          properties: {\n   86            items: {\n   87:             type: Array,\n   88              value: function() {\n   89                var data = [];\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\iron-selector\\iron-multi-selectable.html:\n   33         */\n   34        selectedValues: {\n   35:         type: Array,\n   36          notify: true,\n   37          value: function() {\n   ..\n   44         */\n   45        selectedItems: {\n   46:         type: Array,\n   47          readOnly: true,\n   48          notify: true,\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\iron-selector\\iron-selectable.html:\n  129         */\n  130        items: {\n  131:         type: Array,\n  132          readOnly: true,\n  133          notify: true,\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\paper-input\\paper-input-container.html:\n  435  \n  436        _addons: {\n  437:         type: Array\n  438          // do not set a default value here intentionally - it will be initialized lazily when a\n  439          // distributed child is attached, which may occur before configuration for this element\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\paper-ripple\\paper-ripple.html:\n  503           */\n  504          ripples: {\n  505:           type: Array,\n  506            value: function() {\n  507              return [];\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\platinum-sw\\platinum-sw-cache.html:\n  134         */\n  135        precache: {\n  136:         type: Array,\n  137          value: function() { return []; }\n  138        }\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\polymer\\lib\\elements\\array-selector.html:\n   50             */\n   51            items: {\n   52:             type: Array,\n   53            },\n   54  \n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components\\polymer\\lib\\elements\\dom-repeat.html:\n  144           */\n  145          items: {\n  146:           type: Array\n  147          },\n  148  \n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components - Copy\\app-layout\\app-grid\\demo\\flickr-grid-layout.html:\n  172  \n  173              photos: {\n  174:               type: Array,\n  175                value: function() {\n  176                  return [];\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components - Copy\\app-layout\\patterns\\transform-navigation\\x-app.html:\n  113  \n  114          items: {\n  115:           type: Array,\n  116            value: function() {\n  117              return ['Item One', 'Item Two', 'Item Three', 'Item Four', 'Item Five'];\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components - Copy\\app-layout\\templates\\shrine\\src\\shrine-app.html:\n  294  \n  295        sections: {\n  296:         type: Array,\n  297          value: function() {\n  298            return [\n  ...\n  314  \n  315        items: {\n  316:         type: Array\n  317        },\n  318  \n  319        featuredItems: {\n  320:         type: Array\n  321        },\n  322  \n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components - Copy\\app-layout\\templates\\shrine\\src\\shrine-detail.html:\n  281  \n  282        relatedItems: {\n  283:         type: Array\n  284        }\n  285  \n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components - Copy\\app-layout\\templates\\shrine\\src\\shrine-list.html:\n  105  \n  106        items: {\n  107:         type: Array\n  108        },\n  109  \n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components - Copy\\app-route\\demo\\index.html:\n  141  \n  142            videos: {\n  143:             type: Array,\n  144              value: function() {\n  145                return [];\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components - Copy\\app-route\\demo\\youtube-demo\\search-results.html:\n   56        properties: {\n   57          items: {\n   58:           type: Array\n   59          }\n   60        }\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components - Copy\\iron-a11y-keys-behavior\\iron-a11y-keys-behavior.html:\n  294  \n  295          _boundKeyHandlers: {\n  296:           type: Array,\n  297            value: function() {\n  298              return [];\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components - Copy\\iron-a11y-keys-behavior\\demo\\x-key-aware.html:\n   64  \n   65        boundKeys: {\n   66:         type: Array,\n   67          value: function() {\n   68            return Object.keys(this.keyBindings).join(' ').split(' ');\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components - Copy\\iron-selector\\iron-multi-selectable.html:\n   33         */\n   34        selectedValues: {\n   35:         type: Array,\n   36          notify: true,\n   37          value: function() {\n   ..\n   44         */\n   45        selectedItems: {\n   46:         type: Array,\n   47          readOnly: true,\n   48          notify: true,\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components - Copy\\iron-selector\\iron-selectable.html:\n  129         */\n  130        items: {\n  131:         type: Array,\n  132          readOnly: true,\n  133          notify: true,\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components - Copy\\paper-ripple\\paper-ripple.html:\n  503           */\n  504          ripples: {\n  505:           type: Array,\n  506            value: function() {\n  507              return [];\n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components - Copy\\polymer\\lib\\elements\\array-selector.html:\n   50             */\n   51            items: {\n   52:             type: Array,\n   53            },\n   54  \n\nD:\\Thom\\Projects\\nodeProjects\\ddsecrets1\\public\\bower_components - Copy\\polymer\\lib\\elements\\dom-repeat.html:\n  144           */\n  145          items: {\n  146:           type: Array\n  147          },\n  148  \n\n48 matches across 41 files\n",
 			"settings":
 			{
-				"buffer_size": 2976,
+				"buffer_size": 10750,
+				"line_ending": "Windows",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "public/bower_components/app-layout/app-grid/demo/flickr-grid-layout.html",
+			"settings":
+			{
+				"buffer_size": 7488,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "public/dd-login.html",
+			"file": "public/bower_components/app-layout/templates/shrine/src/shrine-app.html",
 			"settings":
 			{
-				"buffer_size": 4477,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "<!--\n@license\nCopyright (c) 2016 The Polymer Project Authors. All rights reserved.\nThis code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt\nThe complete set of authors may be found at http://polymer.github.io/AUTHORS.txt\nThe complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt\nCode distributed by Google as part of the polymer project is also\nsubject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt\n-->\n\n<link rel=\"import\" href=\"/bower_components/polymer/polymer-element.html\">\n<!-- <link rel=\"import\" href=\"/bower_components/note-app-elements/na-elements.html\"> -->\n<link rel=\"import\" href=\"/bower_components/polymerfire/firebase-query.html\">\n<link rel=\"import\" href=\"/bower_components/polymerfire/firebase-document.html\">\n<link rel=\"import\" href=\"/bower_components/iron-list/iron-list.html\" />\n<link rel=\"import\" href=\"/bower_components/iron-image/iron-image.html\" />\n<link rel=\"import\" href=\"/bower_components/paper-button/paper-button.html\" />\n\n\n\n<link rel=\"import\" href=\"shared-styles.html\">\n\n<dom-module id=\"my-view1\">\n  <template>\n    <style include=\"shared-styles\">\n      :host {\n        display: block;\n        width: 100%;\n        padding: 0px;\n      }\n\n      ul {\n        /*list-style-type: none;*/\n        padding: 0px;\n      }\n\n      h3 {\n        font: bold 20px/1.5 Helvetica, Verdana, sans-serif;\n      }\n\n      li iron-image {\n        float: left;\n        margin: 0 15px 0 0;\n      }\n\n/*      li p {\n        font: 200 12px/1.5 Georgia, Times New Roman, serif;\n      }\n*/\n      li {\n        padding: 10px;\n        overflow: auto;\n      }\n\n      li:hover {\n        background: var(--paper-deep-purple-900);\n        color: ;\n        opacity: 20%;\n        cursor: pointer;\n      }\n\n    </style>\n\n    <firebase-auth\n        id=\"auth\"\n        app-name=\"ddsecrets\"\n        provider=\"google\"\n        signed-in=\"{{signedIn}}\"\n        user=\"{{user}}\">\n    </firebase-auth>\n\n<!--     <firebase-document\n      id=\"query\"\n      app-name=\"ddsecrets\"\n      path=\"/users\"\n      data=\"{{data}}\">\n    </firebase-document>\n -->\n    <firebase-query\n        id=\"query\"\n        app-name=\"ddsecrets\"\n        path=\"/users\"\n        data=\"{{fireData}}\">\n    </firebase-query>\n\n    <ul>\n      <template id=\"fd\" is=\"dom-repeat\" items=\"[[fireData]]\" as=\"item\">\n        <li on-click=\"showButton\">\n          <iron-image class=\"circle\" style=\"width:50px; height:50px;\" sizing=\"cover\" src$=\"[[item.imageURL]]\"></iron-image>\n          <h3>[[item.name]]</h3>        \n        </li>          \n      </template>\n    </ul>\n\n\n    <paper-button id=\"createMessageButton\" on-tap=\"dothing\" raised hidden=[[isHidden]]>Create Message</paper-button>\n \n\n  </template>\n\n  <script>\n    // class MyView1 extends Polymer.Element {\n    //   static get is() { return 'my-view1'; }\n\n\n\n    // }\n\n    Polymer({\n  \n      is: 'my-view1',\n\n      behaviors: [Polymer.Element],\n\n      properties: {\n        uid: String,\n        url: String,\n        isHidden: {\n          type: Boolean,\n          value: true\n        },\n        fireData: {\n          type: Object,\n          // notify: true\n        }\n      },\n      observers: [\n        '_dataChanged(fireData.splices)'\n      ],\n      _toArray: function(obj) {\n          return Object.keys(obj).map(function(key) {\n              return {\n                  name: key,\n                  value: obj[key]\n              }\n          });\n      },\n      _dataChanged: function(newData, oldData) {\n        if (newData) {\n          // Removes the current user from the list even though we all\n          //  like talking to ourselves\n          newData.indexSplices.forEach(function(s) {\n            var temp = []\n            for (obj of s.object) {\n              if (obj.$key == this.user.uid) {\n                // Don't push on the current user\n              } else {\n                temp.push(obj);\n              }\n            }\n            this.fireData = temp\n          }, this);\n        }\n      },\n      dothing: function() {\n        this.isHidden = true;\n        this.set('route.path', '/view2');\n      },\n      showButton: function() {\n        this.isHidden = false;\n\n        console.log(\"thing\");\n      }\n\n    });\n\n\n  </script>\n</dom-module>\n",
-			"file": "public/my-view1.html",
-			"file_size": 4234,
-			"file_write_time": 131426310723566634,
-			"settings":
-			{
-				"buffer_size": 4251,
-				"encoding": "UTF-8",
+				"buffer_size": 10698,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "public/bower_components/app-route/app-location.html",
+			"file": "public/bower_components/accessibility-developer-tools/dist/js/axs_testing.js",
 			"settings":
 			{
-				"buffer_size": 6575,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "public/bower_components/polymerfire/firebase-query.html",
-			"settings":
-			{
-				"buffer_size": 12649,
+				"buffer_size": 111483,
 				"line_ending": "Unix"
 			}
 		},
@@ -179,13 +209,17 @@
 		"/D/Thom/Projects/nodeProjects/ddsecrets1",
 		"/D/Thom/Projects/nodeProjects/ddsecrets1/public",
 		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components",
-		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/app-route",
-		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/iron-pages",
-		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/paper-button",
+		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/app-layout",
+		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/app-layout/app-toolbar",
+		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/iron-icons",
+		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/iron-iconset-svg",
 		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/polymerfire"
 	],
 	"file_history":
 	[
+		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/app-route/app-location.html",
+		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/dd-login.html",
+		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/polymerfire/firebase-query.html",
 		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/iron-image/iron-image.html",
 		"/D/Thom/Projects/Test/hello.txt",
 		"/D/Thom/Projects/nodeProjects/ddsecrets1/public/bower_components/firebase/firebase-auth-externs.js",
@@ -246,6 +280,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"_toArray",
+			"type: Array",
 			"getRedirectResult",
 			"h1",
 			"circle",
@@ -291,7 +327,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -323,7 +359,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
@@ -332,15 +368,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10385,
+						"buffer_size": 11146,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7462,
-								7462
+								5115,
+								5130
 							]
 						],
 						"settings":
@@ -352,14 +388,469 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1050.0,
+						"translation.y": 2898.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "public/bower_components/iron-iconset-svg/iron-iconset-svg.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8234,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2520.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "public/bower_components/iron-icons/iron-icons.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 73711,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 294.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "public/my-icons.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1186,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "public/my-view1.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5894,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5497,
+								5497
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2254.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "public/my-view2.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4786,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1343,
+								1343
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 194.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 7,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10750,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										213,
+										224
+									],
+									[
+										469,
+										480
+									],
+									[
+										774,
+										785
+									],
+									[
+										899,
+										910
+									],
+									[
+										980,
+										991
+									],
+									[
+										1186,
+										1197
+									],
+									[
+										1382,
+										1393
+									],
+									[
+										1565,
+										1576
+									],
+									[
+										1832,
+										1843
+									],
+									[
+										2038,
+										2049
+									],
+									[
+										2282,
+										2293
+									],
+									[
+										2524,
+										2535
+									],
+									[
+										2803,
+										2814
+									],
+									[
+										3022,
+										3033
+									],
+									[
+										3207,
+										3218
+									],
+									[
+										3437,
+										3448
+									],
+									[
+										3670,
+										3681
+									],
+									[
+										3814,
+										3825
+									],
+									[
+										4062,
+										4073
+									],
+									[
+										4276,
+										4287
+									],
+									[
+										4518,
+										4529
+									],
+									[
+										4726,
+										4737
+									],
+									[
+										4996,
+										5007
+									],
+									[
+										5255,
+										5266
+									],
+									[
+										5400,
+										5411
+									],
+									[
+										5629,
+										5640
+									],
+									[
+										5855,
+										5866
+									],
+									[
+										6233,
+										6244
+									],
+									[
+										6472,
+										6483
+									],
+									[
+										6722,
+										6733
+									],
+									[
+										6927,
+										6938
+									],
+									[
+										7146,
+										7157
+									],
+									[
+										7409,
+										7420
+									],
+									[
+										7721,
+										7732
+									],
+									[
+										7846,
+										7857
+									],
+									[
+										7927,
+										7938
+									],
+									[
+										8140,
+										8151
+									],
+									[
+										8343,
+										8354
+									],
+									[
+										8533,
+										8544
+									],
+									[
+										8807,
+										8818
+									],
+									[
+										9039,
+										9050
+									],
+									[
+										9288,
+										9299
+									],
+									[
+										9590,
+										9601
+									],
+									[
+										9735,
+										9746
+									],
+									[
+										9971,
+										9982
+									],
+									[
+										10211,
+										10222
+									],
+									[
+										10472,
+										10483
+									],
+									[
+										10684,
+										10695
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								218,
+								218
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([^ \t].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "public/bower_components/app-layout/app-grid/demo/flickr-grid-layout.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7488,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4913,
+								4919
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1706.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "public/bower_components/app-layout/templates/shrine/src/shrine-app.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10698,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8475,
+								8475
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3666.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
 					"file": "public/bower_components/accessibility-developer-tools/dist/js/axs_testing.js",
 					"semi_transient": false,
 					"settings":
@@ -387,203 +878,11 @@
 						"translation.y": 1860.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "public/my-view2.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1965,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1376,
-								1376
-							]
-						],
-						"settings":
-						{
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 126.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "public/bower_components/app-route/app-route-converter.html",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 2976,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1986,
-								2051
-							]
-						],
-						"settings":
-						{
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 126.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "public/dd-login.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4477,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3931,
-								3939
-							]
-						],
-						"settings":
-						{
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 681.0,
-						"zoom_level": 1.0
-					},
 					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "public/my-view1.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4251,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1746,
-								1746
-							]
-						],
-						"settings":
-						{
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 154.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "public/bower_components/app-route/app-location.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6575,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1386,
-								1386
-							]
-						],
-						"settings":
-						{
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 49.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "public/bower_components/polymerfire/firebase-query.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 12649,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2002,
-								2016
-							]
-						],
-						"settings":
-						{
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 728.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
+					"buffer": 11,
 					"file": "public/bower_components/paper-styles/color.html",
 					"semi_transient": false,
 					"settings":
@@ -595,8 +894,8 @@
 						"selection":
 						[
 							[
-								2294,
-								2294
+								1368,
+								1368
 							]
 						],
 						"settings":
@@ -608,14 +907,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 588.0,
+						"translation.y": 126.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 12,
 					"file": "public/bower_components/polymerfire/firebase-auth.html",
 					"semi_transient": false,
 					"settings":
@@ -643,7 +942,7 @@
 						"translation.y": 2307.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 12,
 					"type": "text"
 				}
 			]
