@@ -33,8 +33,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ul {
         /*list-style-type: none;*/
         padding: 0px;
+        margin-right: 5px;
       }
-
+      div.footer {
+        position: fixed;
+        background: var(--paper-purple-900);
+        width: 100%;
+        padding: 15px;
+        bottom: 0;
+        left: 0;
+      }
+      paper-button.createButton {
+        background: var(--paper-indigo-a200);
+        padding: 15px;
+        width: calc(100% - 40px);
+      }
     </style>
 
     <firebase-auth
@@ -63,13 +76,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div id="usersList">
       <ul>
         <template id="fd" is="dom-repeat" items="[[fireData]]" as="item">      
-          <my-players name="[[item.name]]" image="[[item.imageURL]]" key="[[item.$key]]"></my-players>
+          <my-players name="[[item.name]]" image="[[item.imageURL]]" key="[[item.$key]]" dm="[[item.isDM]]"></my-players>
         </template>
       </ul>
+      <div class="footer">
+        <paper-button id="createMessageButton" class="createButton" on-tap="createMessages" raised hidden=[[isHidden]]>Create Message</paper-button>
+      </div>
+      <div style="height: 100px;"></div>       
     </div>
 
-    <paper-button id="createMessageButton" on-tap="createMessages" raised hidden=[[isHidden]]>Create Message</paper-button>
- 
 
   </template>
 
@@ -126,6 +141,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               if (obj.$key == this.user.uid) {
                 // Don't push on the current user
                 console.log("this user", this.user)
+                // this.fire('currentUser', {'player': {'charName':obj.}});
+              } else if (obj.isDM == true) {
+                obj['icon'] = 'add';
+                temp.unshift(obj);
               } else {
                 obj['icon'] = 'add';
                 temp.push(obj);
@@ -145,7 +164,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         for (; i < this.playerArray.length; i++) {
           obj["who" + (i+1)] = this.playerArray[i];
         }
-        obj["numUsers"] = i;
+        obj["numUsers"] = i + 1;
 
         var newRef = this.$.huddle.ref.push(obj);
         // console.log("data", this.$.huddle.data.newRef)

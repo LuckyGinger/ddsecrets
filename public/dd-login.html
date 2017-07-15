@@ -15,6 +15,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="bower_components/polymerfire/firebase-document.html">
 <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout.html">
+<script src="bower_components/disable-scroll/dist/disable-scroll.min.js"></script>
+<link rel="import" href="bower_components/disable-scroll/dist/index.html">
 <dom-module id="dd-login">
   <template>
     <style>
@@ -24,11 +26,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         left: 0;
         right: 0;
         bottom: 0;
+        height: 100%;
         background-color: var(--paper-purple-500);
         transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 1;
         color: var(--paper-purple-50);
-
+        /*position: fixed;*/
         @apply --layout;
         @apply --layout-center-center;
       }
@@ -68,9 +71,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <form is="iron-form" id="contact">
 
       <!-- <paper-input-container class="character"> -->
-      <paper-input id="characterName" name="characterName" label="Character Name" required autocomplete="name"></paper-input>
+      <paper-input id="characterName" name="characterName" label="Enter Character Name" required autocomplete="name" value="{{charName}}"></paper-input>
       <!-- </paper-input-container> -->
-      <paper-button on-tap="signIn" disabled="[[disabled]]">
+      <paper-button on-tap="signIn" disabled="[[googleButton]]">
         <iron-icon icon="account-circle"></iron-icon>
         <span>Sign in with Google</span>
       </paper-button>
@@ -97,7 +100,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: String,
           observer: '_setUserRef'
           // observer: '_signIn'
-        }
+        },
+        charName:
+        {
+          type: String,
+          value: "",
+          observer: '_userNameSet'
+        },
+        googleButton: Boolean
+
+      },
+      ready: function() {
+        if (this.$.characterName.value)
+          return false;
+        else
+          return true;
+      },
+      computeDisabled: function(charName) {
+        if (charName)
+          return false;
+        else
+          return true;
+      },
+      _userNameSet: function() {
+        console.log("character Name", this.$.characterName.value);
+        if (this.$.characterName.value)
+          this.googleButton = false;
+        else
+          this.googleButton = true;
       },
       signIn: function() {
 
@@ -121,7 +151,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.fire('sign-in', null, { bubbles: false });
 
         }).catch(function(error) {
-          console.log("error", error);
+          console.log("Login error", error);
         });              
       },
       _setUserRef: function(newData, oldData) {

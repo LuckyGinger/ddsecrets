@@ -13,6 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <!-- <base href="https://polygit.org/polymer+1.7.0/components/"> -->
 <!-- <script src="webcomponentsjs/webcomponents-lite.min.js"></script> -->
 <link rel="import" href="shared-styles.html">
@@ -24,6 +25,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
 
         padding: 10px;
+        padding-bottom: 50px;
       }
 
       ul {
@@ -31,7 +33,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 0px;
       }
 
-      h3 {
+/*      h3 {
         font: 20px/1.5 Helvetica, sans-serif;
       }
 
@@ -43,7 +45,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font: 200 12px/1.5 Georgia, Times New Roman, serif;
       }
 */
-      li {
+/*      li {
         margin-bottom: 10px;
         padding: 10px;
         overflow: auto;
@@ -53,6 +55,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         border-color: var(--paper-deep-purple-900);
         box-shadow: 3px 3px 1px #888888
         
+      }*/
+
+      div.my-footer {
+        position: fixed;
+        background: var(--paper-purple-900);
+        width: 100%;
+        padding: 0 15px 10px 15px;
+        bottom: 0;
+        left: 0;
+      }
+      paper-input.sendMsg {
+        padding-top: 0px;
+      }
+      paper-icon-button.send {
+        /*color: var(--paper-grey-400);*/
+        color: white;
+      }
+      paper-input.sendMsg {
+        --paper-input-container-color: white;
+        --paper-input-container-focus-color: var(--paper-cyan-a200);
+        --paper-input-container-invalid-color: green;
+        --paper-input-container-input-color: white;
+      }
+      div.fix {
+        width: calc(100% - 35px);
       }
     </style>
 
@@ -76,15 +103,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <ul>
         <h3>[[noContent]]</h3>
         <template id="convo" is="dom-repeat" items="[[fireMsg]]" as="item">
-          <li>
+
+          <my-player-message scroll="[[_scroll(item.count)]]" image="[[item.imageURL]]" what="[[item.what]]" who="[[item.who]]" curr="{{getUID()}}"></my-player-message>
+<!--           <li>
             <iron-image class="circle" fade preload style="width:50px; height:50px;" sizing="cover" scroll="[[_scroll(item.count)]]" src$="[[item.imageURL]]"></iron-image>
-            <!-- <iron-image class="circle" style="width:50px; height:50px;" sizing="cover" scroll="[[_scroll" src$="[[item.imageURL]]"></iron-image> -->
+            <iron-image class="circle" style="width:50px; height:50px;" sizing="cover" scroll="[[_scroll" src$="[[item.imageURL]]"></iron-image>
             <p><b>[[item.what]]</b></p> 
-          </li>          
+          </li>  -->  
         </template>
+        <div style="height: 100px;"></div>       
       </ul>
-      <paper-input id="message" label="Write a secret..."></paper-input>
-      <paper-button id="send" on-tap="send">Send</paper-button>
+      <!-- <paper-button id="createMessageButton" class="createButton" on-tap="createMessages" raised hidden=[[isHidden]]>Create Message</paper-button> -->
+      <div class="my-footer">
+        <div class="fix">
+          <paper-input id="message" class="sendMsg" label="Write a secret...">
+            <paper-icon-button class="send" icon="send" on-tap="send" slot="suffix"></paper-icon-button>
+          </paper-input>
+        </div>
+      </div>
+
     </div>
 
 
@@ -118,7 +155,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ],
       _scroll: function(counter) {
         console.log("scroll");
-        this.fire('eventFromChild', {height: this.$.list});
+        this.fire('resizeEvent', {height: this.$.list});
+      },
+      getUID: function() {
+        console.log("getUID", this.user.uid);
+        return this.user.uid;
       },
       _dataChanged(newData, oldData) {
         if (newData) {
@@ -144,22 +185,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       },
       send: function() {
-        var seconds = new Date().getTime() / 1000;
-        console.log("imageURL",this.user.photoURL);
-        console.log("what", this.$.message.value);
-        console.log("who",this.user.uid);
-        console.log("when",seconds.toString());
-        console.log("where", this.secret)
+        if (this.$.message.value) {
+          var seconds = new Date().getTime() / 1000;
+          console.log("imageURL",this.user.photoURL);
+          console.log("what", this.$.message.value);
+          console.log("who",this.user.uid);
+          console.log("when",seconds.toString());
+          console.log("where", this.secret)
 
-        this.$.messages.ref.push({
-            imageURL: this.user.photoURL,
-            what: this.$.message.value,
-            who: this.user.uid,
-            when: seconds.toString()
+          this.$.messages.ref.push({
+              imageURL: this.user.photoURL,
+              what: this.$.message.value,
+              who: this.user.uid,
+              when: seconds.toString()
 
-        });
-        this.$.message.value = null;
-        console.log(this.$.list);
+          });
+          this.$.message.value = null;
+          this.fire('resizeEvent', {height: this.$.list});
+          console.log(this.$.list);          
+        }
       }
 
 

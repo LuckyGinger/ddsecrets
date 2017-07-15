@@ -1,0 +1,122 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-route/app-route-converter.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<!-- <base href="https://polygit.org/polymer+1.7.0/components/"> -->
+<!-- <script src="webcomponentsjs/webcomponents-lite.min.js"></script> -->
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-player-message">
+  <template>
+    <style include="shared-styles">
+      h3 {
+        font: 20px/1.5 Helvetica, sans-serif;
+      }
+
+      li iron-image {
+        float: left;
+        margin: 0 15px 0 0;
+      }
+
+      li.player iron-image {
+        float: right;
+        margin: 0 15px 0 0;
+      }
+
+      li.player p {
+        float: right;
+        margin-right: 15px;
+      }
+
+/*      li p {
+        font: 200 12px/1.5 Georgia, Times New Roman, serif;
+      }
+*/
+      li {
+        margin: 0 20px 15px 0;
+        padding: 10px;
+        overflow: auto;
+        border-style: solid;
+        border-width: 1px;
+        background: var(--paper-deep-purple-100);
+        border-color: var(--paper-deep-purple-900);
+        box-shadow: 3px 3px 1px #888888;
+      }
+
+      li.player {
+        margin: 0 10px 15px 20px;
+        /*margin-bottom: 10px;*/
+        padding: 10px;
+        overflow: auto;
+        border-style: solid;
+        border-width: 1px;
+        /*background: var(--paper-deep-purple-400);*/
+        background: var(--paper-grey-400);
+        border-color: var(--paper-deep-purple-900);
+        box-shadow: 3px 3px 1px #888888;
+      }
+    </style>
+
+    <firebase-auth
+        id="auth"
+        app-name="ddsecrets"
+        provider="google"
+        signed-in="{{signedIn}}"
+        user="{{user}}">
+    </firebase-auth>
+
+    <li id="userMsg" class="">
+      <iron-image id="ii" class="circle" fade preload style="width:50px; height:50px;" sizing="cover" scroll="[[count]]" src="[[image]]"></iron-image>
+      <p><b>[[what]]</b></p> 
+    </li> 
+
+  </template>
+
+  <script>
+    Polymer({
+  
+      is: 'my-player-message',
+
+      behaviors: [Polymer.Element],
+
+      properties: {
+        scroll: Number,
+        what: String,
+        image: String,
+        who: {
+          type: String,
+          observer: 'setWho'
+        },
+        curr: {
+          type: String,
+          observer: 'setWho'
+        }
+      },
+      setWho: function() {
+        console.log("who", this.who);
+        console.log("curr", this.curr);
+        if (this.who == this.curr) {
+          this.$.userMsg.setAttribute("class", "player");
+        }
+      }
+
+
+    });
+    // class MyView2 extends Polymer.Element {
+    //   static get is() { return 'my-view2'; }
+    // }
+
+    // window.customElements.define(MyView2.is, MyView2);
+  </script>
+</dom-module>

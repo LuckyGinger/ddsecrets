@@ -1,11 +1,11 @@
 {
-  "name": "Notes",
+  "name": "D&Dr",
   "scope": "./",
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "any",
-  "theme_color": "#32cd32",
-  "background_color": "#32cd32",
+  "theme_color": "#cda632",
+  "background_color": "#cda632",
   "icons": [{
     "src": "images/icon-0-75x.png",
     "sizes": "36x36",
